@@ -37,7 +37,7 @@ set :deploy_to, '/var/www/rails/radical'
 set :ssh_options,    { :forward_agent => true, :paranoid => false }
 
 # Default value for :linked_files is []
-append :linked_files, 'config/settings.yml'
+append :linked_files, 'config/settings.yml', 'config/application.yml'
 
 # Default value for linked_dirs is []
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'
