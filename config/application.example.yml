@@ -132,6 +132,14 @@ development:
   OHANA_API_ENDPOINT: https://ohana-api-demo.herokuapp.com/api
   # OHANA_API_TOKEN: changeme
 
+development:
+  DOMAIN_NAME: radical.sangparkllc.com
+  # GOOGLE_MAPS_API_KEY:
+  # GOOGLE_TRANSLATE_API_KEY: Your_API_Key
+  OHANA_API_ENDPOINT: http://radical-api.sangparkllc.com/api
+  # OHANA_API_TOKEN: changeme
+
+
 ###############################################################################
 #
 # SETTINGS FOR PRODUCTION.
