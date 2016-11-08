@@ -6,6 +6,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
+server 'cheslor.sangparkllc.com', user: 'deployer', roles: %w{app web db}
 
 
 
@@ -20,6 +21,12 @@
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
+set :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+set :rails_env, 'staging'
+set :bundle_flags, "--deployment"
+
+set :application, 'radical_staging'
+set :deploy_to, "/var/www/rails/#{fetch(:application)}"
 
 
 
