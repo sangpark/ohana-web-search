@@ -25,7 +25,7 @@ en:
       Retrieve detailed information about the services available
       in %{location}.
     header: 'Find community services in %{location}'
-    location: 'San Mateo County'
+    location: 'New York'
 
   buttons:
     clear_search_fields: 'Clear search fields'
@@ -144,4 +144,3 @@ en:
       issue_link: 'File an issue on Github'
       issue_link_url: 'https://github.com/codeforamerica/Ohana-Web-Search/issues'
       submit_comment_label: 'Submit comments to the development team:'
-
