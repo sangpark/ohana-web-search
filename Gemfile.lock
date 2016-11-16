@@ -224,8 +224,6 @@ GEM
     net-ssh (3.2.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-    ohanakapa (1.1.2)
-      sawyer (~> 0.5.3)
     os (0.9.6)
     parser (2.3.1.4)
       ast (~> 2.2)
@@ -407,7 +405,6 @@ DEPENDENCIES
   kgio
   letter_opener
   memcachier
-  ohanakapa (~> 1.1.1)
   poltergeist
   puma
   quiet_assets
@@ -421,6 +418,7 @@ DEPENDENCIES
   rspec-rails (~> 3.1)
   rubocop
   sass-rails (~> 5.0.1)
+  sawyer
   spring
   spring-commands-rspec
   spring-watcher-listen

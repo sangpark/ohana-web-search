@@ -9,6 +9,8 @@ gem 'actionmailer'
 # Use SCSS for stylesheets.
 gem 'sass-rails', '~> 5.0.1'
 
+gem 'sawyer'
+
 # Compass tools for use with SCSS.
 gem 'compass-rails'
 
@@ -26,7 +28,7 @@ gem 'haml-rails'
 
 # SERVER
 gem 'puma'
-gem 'ohanakapa', '~> 1.1.1'
+# gem 'ohanakapa', '~> 1.1.1'
 gem 'faraday-http-cache', '~> 1.0'
 
 # Caching

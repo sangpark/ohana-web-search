@@ -4,7 +4,7 @@ class Location
   # @param params [Hash] Search options.
   # @return [Array] Array of locations.
   def self.search(params = {})
-    Ohanakapa.search('search', params)
+    RadicalApi.search('search', params)
   end
 
   # Calls the locations/{id} endpoint of the Ohana API.
@@ -13,6 +13,6 @@ class Location
   # @param id [String] Location id.
   # @return [Sawyer::Resource] Hash of location details.
   def self.get(id)
-    Ohanakapa.location(id)
+    RadicalApi.location(id)
   end
 end
