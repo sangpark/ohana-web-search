@@ -11,7 +11,7 @@ class LocationsController < ApplicationController
 
     locations = Location.search(params)
 
-    @search = Search.new(locations, Ohanakapa.last_response, params)
+    @search = Search.new(locations, RadicalApi.last_response, params)
 
     # Populate the keyword search field with the original term
     # as typed by the user, not the translated word.

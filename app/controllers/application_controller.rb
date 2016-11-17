@@ -5,10 +5,10 @@ class ApplicationController < ActionController::Base
 
   unless Rails.application.config.consider_all_requests_local
     rescue_from Faraday::ConnectionFailed, with: :render_api_down
-    rescue_from Ohanakapa::ServiceUnavailable, with: :render_api_down
-    rescue_from Ohanakapa::InternalServerError, with: :render_api_down
-    rescue_from Ohanakapa::BadRequest, with: :render_bad_search
-    rescue_from Ohanakapa::NotFound, with: :render_not_found
+    rescue_from RadicalApi::ServiceUnavailable, with: :render_api_down
+    rescue_from RadicalApi::InternalServerError, with: :render_api_down
+    rescue_from RadicalApi::BadRequest, with: :render_bad_search
+    rescue_from RadicalApi::NotFound, with: :render_not_found
   end
 
   private
