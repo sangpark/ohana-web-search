@@ -1,0 +1,9 @@
+<% # This phone partial displays the phone type and department. %>
+<sup class="phone-type">
+  <%= phone.number_type %>
+</sup>
+<% if phone.department %>
+  <section class="phone-department annotation" itemprop="contactType">
+    <%= phone.department %>
+  </section>
+<% end %>

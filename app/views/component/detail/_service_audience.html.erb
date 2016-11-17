@@ -1,0 +1,10 @@
+<% if service.audience.present? %>
+  <section class="audience">
+    <h1>
+      <%= t('service_fields.audience') %>
+    </h1>
+    <span>
+      <%= service.audience %>
+    </span>
+  </section>
+<% end %>

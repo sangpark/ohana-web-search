@@ -1,0 +1,18 @@
+<% if @keywords.present? %>
+  <section id="keywords-box">
+    <h1>
+      <%= t('service_fields.keywords') %>
+    </h1>
+    <section class="keywords">
+      <ul>
+        <% @keywords.each do |keyword| %>
+          <li>
+            <span>
+              <%= link_to keyword, locations_path(request.query_parameters.merge(keyword: keyword)) %>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+  </section>
+<% end %>

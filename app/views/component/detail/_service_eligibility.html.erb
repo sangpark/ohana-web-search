@@ -1,0 +1,10 @@
+<% if service.eligibility.present? %>
+  <section class="eligibility">
+    <h1>
+      <%= t('service_fields.eligibility') %>
+    </h1>
+    <span>
+      <%= service.eligibility %>
+    </span>
+  </section>
+<% end %>

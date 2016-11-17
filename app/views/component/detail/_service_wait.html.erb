@@ -1,0 +1,10 @@
+<% if service.wait_time.present? %>
+  <section class="wait-time">
+    <h1>
+      <%= t('service_fields.wait_time') %>
+    </h1>
+    <span>
+      <%= service.wait_time %>
+    </span>
+  </section>
+<% end %>

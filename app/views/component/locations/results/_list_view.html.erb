@@ -1,0 +1,51 @@
+<section id="list-view">
+  <ul>
+    <% @search.locations.each do |location| %>
+      <li>
+        <a href="<%= location_link_for(location) %>" name="<%= location.id %>" title="<%= location.name %>">
+          &nbsp;
+        </a>
+        <section class="results-entry" itemtype="http://schema.org/Organization">
+          <header>
+            <hgroup>
+              <h1 class="name">
+                <a href="<%= location_link_for(location) %>" name="<%= location.id %>">
+                  <%= superscript_ordinals(full_name_content_for(location)) %>
+                </a>
+              </h1>
+              <% if location.organization.name && location.organization.name != location.name %>
+                <h2 class="agency">
+                  <%= link_to(locations_path(org_name: location.organization.name)) do %>
+                    <span>
+                      <%= superscript_ordinals(location.organization.name) %>
+                    </span>
+                  <% end %>
+                </h2>
+              <% end %>
+            </hgroup>
+          </header>
+          <% if location.phones.present? || location.address.present? || location.short_desc.present? %>
+            <section class="content">
+              <% if location.phones.present? %>
+                <%= render 'component/detail/phone', phone: first_voice_or_hotline_phone_for(location.phones), show_phone_type_and_department: false %>
+              <% end %>
+              <% if location.address.present? %>
+                <p class="address">
+                  <%= render 'component/detail/address', location: location, lines: 1 %>
+                </p>
+              <% end %>
+              <% if location.short_desc.present? %>
+                <p class="short-desc">
+                  <%= location.short_desc %>
+                </p>
+              <% end %>
+            </section>
+          <% end %>
+        </section>
+      </li>
+    <% end %>
+  </ul>
+  <footer>
+    <%= paginate @search.results %>
+  </footer>
+</section>

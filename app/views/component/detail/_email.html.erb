@@ -1,0 +1,17 @@
+<%
+=begin
+  The email partial displays the email icon and address.
+  e.g. [icon] admin@example.com
+=end %>
+<% if email.present? %>
+  <section class="email icon-text-block">
+    <i class="fa fa-envelope-square"></i>
+    <span>
+      <a href="mailto:<%= email %>">
+        <span itemprop="email">
+          <%= email %>
+        </span>
+      </a>
+    </span>
+  </section>
+<% end %>

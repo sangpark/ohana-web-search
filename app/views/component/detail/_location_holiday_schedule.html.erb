@@ -1,0 +1,8 @@
+<% if schedules.present? %>
+  <section class="schedules holiday-schedules icon-text-block">
+    <i class="fa fa-clock-o"></i>
+    <span>
+      <%= holiday_hours_for(schedules) %>
+    </span>
+  </section>
+<% end %>

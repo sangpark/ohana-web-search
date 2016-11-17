@@ -1,0 +1,22 @@
+<span itemprop="address" itemtype="http://schema.org/PostalAddress">
+  <% if location.mail_address.attention.present? %>
+    <span class="attention">
+      <%= location.mail_address.attention %>
+    </span>
+    <br/>
+  <% end %>
+  <span class="street-address" itemprop="streetAddress">
+    <%= superscript_ordinals(street_address_for(location.mail_address)) %>
+  </span>
+  <br/>
+  <span class="city" itemprop="addressLocality">
+    <%= location.mail_address.city %>
+  </span>
+  ,
+  <span class="state" itemprop="addressRegion">
+    <%= location.mail_address.state_province %>
+  </span>
+  <span class="zipcode" itemprop="postalCode">
+    <%= location.mail_address.postal_code %>
+  </span>
+</span>

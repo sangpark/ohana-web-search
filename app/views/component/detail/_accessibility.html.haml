@@ -1,8 +1,0 @@
-- if location.accessibility.present?
-  %section.accessibility
-    %h1= t('location_fields.accessibility')
-    %ul
-      - location.accessibility.sort.each do |accessibility_option|
-        %li
-          %span
-            = accessibility_option

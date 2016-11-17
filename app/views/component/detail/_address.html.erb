@@ -1,0 +1,19 @@
+<span itemprop="address" itemtype="http://schema.org/PostalAddress">
+  <span class="street-address" itemprop="streetAddress">
+    <%= superscript_ordinals(street_address_for(location.address)) %>
+  </span>
+  <% if lines == 2 %>
+    <br/>
+  <% else %>
+    ,
+  <% end %>
+  <span class="city" itemprop="addressLocality">
+    <%= location.address.city %>,
+  </span>
+  <span class="state" itemprop="addressRegion">
+    <%= location.address.state_province %>
+  </span>
+  <span class="zipcode" itemprop="postalCode">
+    <%= location.address.postal_code %>
+  </span>
+</span>

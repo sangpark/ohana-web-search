@@ -1,0 +1,46 @@
+<%= render 'component/locations/results/header' %>
+<section id="results-entries">
+  <% unless @search.map_data.empty? %>
+    <%= render 'component/locations/results/map_view' %>
+  <% end %>
+  <% if info_box_key_corresponding_to_keyword.present? %>
+    <section id="terminology-box-container">
+      <div class="terminology-box">
+        <%= render_info_box(info_box_key_corresponding_to_keyword) %>
+      </div>
+    </section>
+  <% end %>
+  <% if @search.locations.present? %>
+    <% if params[:org_name].present? %>
+      <section id="organization-detail-container">
+        <%= render 'component/locations/results/organization_detail', organization: @search.locations.first.organization %>
+      </section>
+    <% end %>
+    <%= render 'component/locations/results/list_view' %>
+  <% else %>
+    <section class="no-results">
+      <div class="message">
+        <strong>
+          <%= t('no_results.main') %>
+        </strong>
+        <em>
+          <%= t('no_results.secondary') %>
+        </em>
+        <ul>
+          <li>
+            <%= t('no_results.options.one') %>
+          </li>
+          <li>
+            <%= t('no_results.options.two') %>
+          </li>
+          <li>
+            <a href="/locations">
+              <%= t('no_results.options.browse_all') %>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <%= render 'home/homepage_links' %>
+  <% end %>
+</section>

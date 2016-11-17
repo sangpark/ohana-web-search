@@ -1,0 +1,10 @@
+<% if service.description.present? %>
+  <section class="description">
+    <h1>
+      <%= t('service_fields.description') %>
+    </h1>
+    <span class="character-limited">
+      <%= service.description %>
+    </span>
+  </section>
+<% end %>

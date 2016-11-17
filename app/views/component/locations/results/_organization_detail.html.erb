@@ -1,0 +1,61 @@
+<section class="organization-detail" itemtype="http://schema.org/Organization">
+  <div class="row">
+    <section class="content">
+      <header>
+        <hgroup>
+          <h1 class="name">
+            <%= superscript_ordinals(full_name_content_for(organization)) %>
+          </h1>
+        </hgroup>
+      </header>
+      <section>
+        <p class="description">
+          <%= organization.description %>
+        </p>
+        <%= render 'component/detail/website', website: organization.website %>
+        <%= render 'component/detail/email', email: organization.email %>
+      </section>
+    </section>
+    <% if organization.accreditations.present? || organization.licenses.present? %>
+      <aside class="metadata">
+        <% if organization.date_incorporated %>
+          <section class="date-incorporated">
+            Incorporated #{incorporated_year_for(organization.date_incorporated)}
+          </section>
+        <% end %>
+        <% if organization.accreditations.present? %>
+          <section class="accreditations">
+            <h1>
+              <%= t('organization_fields.accreditations') %>
+            </h1>
+            <ul>
+              <% organization.accreditations.sort.each do |accreditation| %>
+                <li>
+                  <span>
+                    <%= accreditation %>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+        <% end %>
+        <% if organization.licenses.present? %>
+          <section class="licenses">
+            <h1>
+              <%= t('organization_fields.licenses') %>
+            </h1>
+            <ul>
+              <% organization.licenses.sort.each do |license| %>
+                <li>
+                  <span>
+                    <%= license %>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+        <% end %>
+      </aside>
+    <% end %>
+  </div>
+</section>

@@ -1,0 +1,10 @@
+<section class="name-box">
+  <span class="name">
+    <%= service.name %>
+  </span>
+  <% if service.alternate_name.present? %>
+    <span class="alternate-name">
+      (#{service.alternate_name})
+    </span>
+  <% end %>
+</section>

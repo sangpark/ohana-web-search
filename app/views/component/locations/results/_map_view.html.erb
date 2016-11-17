@@ -1,0 +1,15 @@
+<section id="map-view">
+  <div id="map-canvas"></div>
+  <%= render 'component/search/map_data' %>
+  <noscript>
+    <% # Hide map when JavaScript is disabled. %>
+    <sass>
+
+      #floating-results-header .static-content,
+      #map-view
+        display: none !important
+
+
+    </sass>
+  </noscript>
+</section>

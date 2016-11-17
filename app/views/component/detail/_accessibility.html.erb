@@ -1,0 +1,16 @@
+<% if location.accessibility.present? %>
+  <section class="accessibility">
+    <h1>
+      <%= t('location_fields.accessibility') %>
+    </h1>
+    <ul>
+      <% location.accessibility.sort.each do |accessibility_option| %>
+        <li>
+          <span>
+            <%= accessibility_option %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>

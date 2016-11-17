@@ -1,0 +1,12 @@
+<% if service.status == 'defunct' || service.status == 'inactive' %>
+  <section class="status">
+    <i class="fa fa-warning"></i>
+    <span>
+      <% if service.status == 'defunct' %>
+        <%= t('service_fields.status_defunct') %>
+      <% elsif service.status == 'inactive' %>
+        <%= t('service_fields.status_inactive') %>
+      <% end %>
+    </span>
+  </section>
+<% end %>

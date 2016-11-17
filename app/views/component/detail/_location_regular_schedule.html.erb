@@ -1,0 +1,8 @@
+<% if schedules.present? %>
+  <section class="schedules regular-schedules icon-text-block">
+    <i class="fa fa-clock-o"></i>
+    <span>
+      <%= regular_hours_for(schedules) %>
+    </span>
+  </section>
+<% end %>

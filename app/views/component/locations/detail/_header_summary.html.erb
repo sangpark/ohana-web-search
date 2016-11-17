@@ -1,0 +1,47 @@
+<div>
+  <div class="right-column">
+    <div class="floating-content hide">><
+      <span>
+        <a class="button-utility button-top" href="#">
+          <i class="fa fa-chevron-up"></i>
+          Top
+        </a>
+      </span>
+    </div>
+    <span class="utility-links">
+      <span class="button-print-container">><
+        <a class="button-utility button-print hide" href="#">
+          <i class="fa fa-print"></i>
+          Print
+        </a>
+      </span>
+      <span>><
+        <a class="button-utility button-share-email" href="<%= mailto_url %>">
+          <i class="fa fa-share"></i>
+          Email
+        </a>
+      </span>
+      <% if location.coordinates.present? %>
+        <span>><
+          <a class="button-utility button-directions" href="https://maps.google.com/maps?saddr=current+location&daddr=<%= full_address_for(location.address) %>" target="_blank">
+            <i class="fa fa-external-link-square"></i>
+            <span>Directions</span>
+          </a>
+        </span>
+      <% end %>
+      <span>
+        <a class="button-utility button-back" href="<%= locations_url(request.query_parameters) %>#<%= location.id %>" target="_self">
+          <i class="fa fa-arrow-circle-left"></i>
+          Back
+        </a>
+      </span>
+    </span>
+  </div>
+  <div class="left-column">
+    <div class="floating-content hide">
+      <h1>
+        <%= superscript_ordinals(full_name_content_for(@location)) %>
+      </h1>
+    </div>
+  </div>
+</div>

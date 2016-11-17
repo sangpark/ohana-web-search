@@ -1,0 +1,261 @@
+<%= render 'component/locations/detail/header' %>
+<section id="detail-info" itemtype="http://schema.org/Organization">
+  <header>
+    <hgroup>
+      <h1 class="name">
+        <%= superscript_ordinals(full_name_content_for(@location)) %>
+      </h1>
+      <% if @location.organization.name && @location.organization.name != @location.name %>
+        <h2 class="agency">
+          <%= link_to(locations_path(org_name: @location.organization.name)) do %>
+            <span>
+              <%= superscript_ordinals(@location.organization.name) %>
+            </span>
+          <% end %>
+        </h2>
+      <% end %>
+    </hgroup>
+  </header>
+  <!-- detail sidebar content
+  -->
+  <div class="location-sidebar-box">
+    <aside class="location-sidebar">
+      <% if @location.regular_schedules.present? %>
+        <section class="schedules-box location-sidebar-section">
+          <h1>Regular Hours</h1>
+          <section class="location-sidebar-content">
+            <%= render 'component/detail/location_regular_schedule', schedules: @location.regular_schedules %>
+          </section>
+        </section>
+      <% end %>
+      <% if @location.holiday_schedules.present? %>
+        <section class="schedules-box location-sidebar-section">
+          <h1>Holiday Hours</h1>
+          <section class="location-sidebar-content">
+            <%= render 'component/detail/location_holiday_schedule', schedules: @location.holiday_schedules %>
+          </section>
+        </section>
+      <% end %>
+      <% if (@location.fields & location_contact_fields).any? %>
+        <section class="contact-box-general location-sidebar-section">
+          <h1>General Contact Info</h1>
+          <section class="location-sidebar-content">
+            <%= render 'component/detail/website', website: @location.website %>
+            <%= render 'component/detail/email', email: @location.email %>
+            <% if @location.phones.present? %>
+              <section class="phones location-sidebar-content-group">
+                <% @location.phones.each do |phone| %>
+                  <%= render 'component/detail/phone', phone: phone, show_phone_type_and_department: true %>
+                <% end %>
+              </section>
+            <% end %>
+          </section>
+        </section>
+      <% end %>
+      <% if @location.contacts.present? %>
+        <% @location.contacts.each do |contact| %>
+          <section class="contact-box-specific location-sidebar-section">
+            <h1>Specific Contact</h1>
+            <section class="location-sidebar-content">
+              <section class="contact-name-box annotated-text-block">
+                <section class="contact-name">
+                  <%= contact.name %>
+                </section>
+                <% if contact.title.present? || contact.department.present? %>
+                  <section class="contact-details annotation">
+                    <%= contact_details_for(contact) %>
+                  </section>
+                <% end %>
+              </section>
+              <%= render 'component/detail/email', email: contact.email %>
+              <% if contact.phones.present? %>
+                <section class="phones location-sidebar-content-group">
+                  <% contact.phones.each do |phone| %>
+                    <%= render 'component/detail/phone', phone: phone, show_phone_type_and_department: true %>
+                  <% end %>
+                </section>
+              <% end %>
+            </section>
+          </section>
+        <% end %>
+      <% end %>
+      <% if @location.address.present? %>
+        <section class="address-box location-sidebar-section">
+          <h1>Physical Address</h1>
+          <section class="location-sidebar-content">
+            <section class="address icon-text-block">
+              <i class="fa fa-map-marker"></i>
+              <span>
+                <%= render 'component/detail/address', location: @location, lines: 2 %>
+              </span>
+            </section>
+          </section>
+        </section>
+      <% end %>
+      <% if @location.mail_address.present? %>
+        <section class="address-box location-sidebar-section">
+          <h1>Mailing Address</h1>
+          <section class="location-sidebar-content">
+            <section class="mail-address icon-text-block">
+              <i class="fa fa-envelope"></i>
+              <span>
+                <%= render 'component/detail/mail_address', location: @location %>
+              </span>
+            </section>
+          </section>
+        </section>
+      <% end %>
+    </aside>
+    <% if @categories.present? %>
+      <aside class="location-sidebar">
+        <section class="location-sidebar-section service-categories-box">
+          <h1>Service Categories</h1>
+          <section class="location-sidebar-content">
+            <section class="service-categories" itemtype="http://schema.org/Service">
+              <ul itemtype="http://schema.org/serviceType">
+                <% @categories.each do |category| %>
+                  <li class="hierarchy-depth-<%= category.depth %>">
+                    <span itemprop="serviceType">
+                      <%= category.name %>
+                    </span>
+                  </li>
+                <% end %>
+              </ul>
+            </section>
+          </section>
+        </section>
+      </aside>
+      <!--= render 'component/detail/service_keywords'
+      -->
+    <% end %>
+  </div>
+  <!-- Main detail content.
+  -->
+  <section>
+    <section class="overview-box">
+      <section>
+        <%= render 'component/detail/location_short_desc', location: @location %>
+        <%= render 'component/detail/location_description', location: @location %>
+      </section>
+    </section>
+    <% if @location.coordinates.present? || @location.transportation.present? %>
+      <section class="map-box">
+        <h1>Location</h1>
+        <div>
+          <% if @location[:transportation].present? %>
+            <section class="transportation-availability">
+              <h1>Public Transit:</h1>
+              <span>
+                <%= @location.transportation %>
+              </span>
+            </section>
+          <% end %>
+          <% if @location.coordinates.present? %>
+            <section class="map" id="detail-map-view">
+              <div id="detail-map-canvas">
+                <span class="hide" id="detail-map-canvas-title">
+                  <%= full_address_for(@location.address) %>
+                </span>
+                <span class="hide" id="detail-map-canvas-lat">
+                  <%= @location.latitude %>
+                </span>
+                <span class="hide" id="detail-map-canvas-lng">
+                  <%= @location.longitude %>
+                </span>
+              </div>
+              <noscript>
+                <% # Hides map when JavaScript is disabled. %>
+                <sass>
+
+                  #detail-map-view
+                    display: none
+
+
+                </sass>
+              </noscript>
+            </section>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+    <% if (@location.fields & service_fields).any? %>
+      <section class="service-opt-box">
+        <h1>Service Options</h1>
+        <section>
+          <%= render 'component/detail/languages', location: @location %>
+          <%= render 'component/detail/accessibility', location: @location %>
+        </section>
+      </section>
+    <% end %>
+    <% if @location.services.present? %>
+      <section class="services-box">
+        <h1>Services</h1>
+        <% @location.services.each do |service| %>
+          <section class="service" itemtype="http://schema.org/Service">
+            <section class="title-box">
+              <%= render 'component/detail/service_status', service: service %>
+              <%= render 'component/detail/service_name', service: service %>
+            </section>
+            <% if service.regular_schedules.present? %>
+              <section class="schedules-box">
+                <h1>Regular Service Hours</h1>
+                <section>
+                  <%= render 'component/detail/location_regular_schedule', schedules: service.regular_schedules %>
+                </section>
+              </section>
+            <% end %>
+            <% if service.holiday_schedules.present? %>
+              <section class="schedules-box">
+                <h1>Holiday Service Hours</h1>
+                <section>
+                  <%= render 'component/detail/location_holiday_schedule', schedules: service.holiday_schedules %>
+                </section>
+              </section>
+            <% end %>
+            <% if service.website.present? || service.email.present? || service.phones.present? %>
+              <section class="contact-box">
+                <% if service.website.present? %>
+                  <%= render 'component/detail/website', website: service.website %>
+                <% end %>
+                <% if service.email.present? %>
+                  <%= render 'component/detail/email', email: service.email %>
+                <% end %>
+                <% if service.phones.present? %>
+                  <section class="phones">
+                    <% service.phones.each do |phone| %>
+                      <%= render 'component/detail/phone', phone: phone, show_phone_type_and_department: true %>
+                    <% end %>
+                  </section>
+                <% end %>
+              </section>
+            <% end %>
+            <%= render 'component/detail/service_description', service: service %>
+            <%= render 'component/detail/service_fees', service: service %>
+            <%= render 'component/detail/service_audience', service: service %>
+            <%= render 'component/detail/service_eligibility', service: service %>
+            <%= render 'component/detail/service_application_process', service: service %>
+            <%= render 'component/detail/service_interpretation_services', service: service %>
+            <%= render 'component/detail/service_wait', service: service %>
+            <%= render 'component/detail/service_required_documents', service: service %>
+            <%= render 'component/detail/service_accepted_payments', service: service %>
+            <%= render 'component/detail/service_service_areas', service: service %>
+          </section>
+        <% end %>
+      </section>
+    <% end %>
+  </section>
+  <!-- Detail footer content.
+  -->
+  <% if @location.updated_at.present? %>
+    <footer>
+      <section class="metadata">
+        <div class="button-edit">
+          <%= link_to "#{SETTINGS[:admin_site]}/locations/#{@location.slug}", rel: 'nofollow' do %>
+            <i class="fa fa-pencil"></i>
+            Edit
+          <% end %>
+        </div>
+      </section>
+    </footer>
+  <% end %>
+</section>

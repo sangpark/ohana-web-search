@@ -1,0 +1,16 @@
+<% if location.languages.present? %>
+  <section class="languages">
+    <h1>
+      <%= t('location_fields.languages') %>
+    </h1>
+    <ul>
+      <% location.languages.sort.each do |lang| %>
+        <li>
+          <span>
+            <%= lang %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>

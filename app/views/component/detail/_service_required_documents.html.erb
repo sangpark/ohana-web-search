@@ -1,0 +1,16 @@
+<% if service.required_documents.present? %>
+  <section class="required-documents">
+    <h1>
+      <%= t('service_fields.required_documents') %>
+    </h1>
+    <ul>
+      <% service.required_documents.sort.each do |f| %>
+        <li>
+          <span>
+            <%= f %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>

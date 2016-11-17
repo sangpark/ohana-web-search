@@ -1,0 +1,15 @@
+<%
+=begin
+The website partial displays the website icon and address.
+  e.g. [icon] www.example.com
+=end %>
+<% if website.present? %>
+  <section class="website icon-text-block">
+    <i class="fa fa-external-link-square"></i>
+    <span>
+      <a href="<%= website %>" itemprop="url" target="_blank">
+        <%= format_url(website) %>
+      </a>
+    </span>
+  </section>
+<% end %>
