@@ -1,0 +1,5 @@
+<% title search_results_page_title %>
+<%= render 'component/search/aside' %>
+<section class="<%= ('result-map-showing' unless @search.map_data.empty?) %>" id="results-container">
+  <%= render 'component/locations/results/body' %>
+</section>

@@ -1,0 +1,21 @@
+<section id="category-box">
+  <% # General and emergency headers and links that are displayed on the homepage %>
+  <% cache ['general-links', cache_key_for(general_links)] do %>
+    <section id="general-services">
+      <ul>
+        <% general_links.try(:each) do |general_header_and_links| %>
+          <%= display_homepage_links(general_header_and_links) %>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+  <% cache ['emergency-links', cache_key_for(emergency_links)] do %>
+    <section id="emergency-services">
+      <ul>
+        <% emergency_links.try(:each) do |emergency_header_and_links| %>
+          <%= display_homepage_links(emergency_header_and_links) %>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+</section>

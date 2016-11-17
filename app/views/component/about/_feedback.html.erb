@@ -1,0 +1,40 @@
+<article id="feedback-box">
+  <div class="close-button"></div>
+  <div>
+    <h1>
+      Want to get in touch?
+    </h1>
+    <p>
+      <%= link_to t('views.feedback.issue_link'), t('views.feedback.issue_link_url'), target: '_blank' %>
+    </p>
+    <section class="feedback-form">
+      <p>
+        <label for="comment">
+          <%= t('views.feedback.submit_comment_label') %>
+        </label>
+        <textarea class="comment" name="comment" placeholder="enter your comment, question, etc." rows="4"></textarea>
+      </p>
+      <p>
+        <label for="email">
+          Email:
+        </label>
+        <input class="email" name="email" type="email" placeholder="your email address (optional)" pattern: '/.+@.+\..+/i' / />
+      </p>
+      <p>
+        <button class="button-feedback-send" disabled="disabled" type="submit">
+          Send!
+        </button>
+      </p>
+    </section>
+    <noscript>
+      <% # Hides ajax-enabled feedback form when JavaScript is disabled. %>
+      <sass>
+
+        #feedback-box .feedback-form
+          display: none
+
+
+      </sass>
+    </noscript>
+  </div>
+</article>
